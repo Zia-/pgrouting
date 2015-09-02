@@ -114,7 +114,7 @@ void undirected_graph_labelGraph_importfile(pgr_edge_t *data_edges, int count){
 	  		defined graph_id label value.*/
 	  		while(true){
 	  			//We need this incre int to break this while loop
-	  			int incre = 0;
+	  			unsigned int incre = 0;
 	  			/*Now here we will again run for loop on all the edges to select that edge which has
 	  			label value equals to graph_id and garbage value equals to 0. For the very first
 	  			loop it will select our above selected edge. Later on it will select those edges
@@ -127,8 +127,8 @@ void undirected_graph_labelGraph_importfile(pgr_edge_t *data_edges, int count){
 	  				if(name(*edgei1) == graph_id && garbage(*edgei1) == 0){
 	  					/*Below two lines will select the source and target value of our above selected edge
 	  					so that later on adjoining edges can be identified.*/
-	  					int source_first = source(*edgei1, undigraph);
-	  					int target_first = target(*edgei1, undigraph);
+	  					unsigned int source_first = source(*edgei1, undigraph);
+	  					unsigned int target_first = target(*edgei1, undigraph);
 	  					/*Now this for loop will again run on all the edges of the graph to find those edges
 	  					whose either start-point or end-point is equals to the start-point of our above selected edge
 	  					or whose either start-point or end-point is equals to the end-point of our above selected edge.*/
@@ -180,7 +180,7 @@ int main()
   //Creating a count and initializing, later on we will update its value
   unsigned int count = 0;
 
-  std::string fileName("/home/zia/Documents/Codes/GitHub/pgrouting/src/label_graph/src/sampledata.data");
+  std::string fileName("./sampledata.data");
   /*Here we are passing fileName, edges and count; and later on edges and count will get updated
   which we will pass as an argument into our undirected_graph_labelGraph_importfile function*/
   import_from_file(fileName, edges, &count);
