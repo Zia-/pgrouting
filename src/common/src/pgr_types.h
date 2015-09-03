@@ -37,7 +37,6 @@ typedef struct edge_astar
   float8 t_y;
 } edge_astar_t;
 
-
 typedef struct path_element
 {
     int64_t vertex_id;
@@ -63,6 +62,13 @@ typedef struct {
   float8 cost;
   float8 reverse_cost;
 } pgr_edge_t;
+
+//The obj of this struct will hold the import file data, without any cost
+typedef struct {
+  int64_t id;
+  int64_t source;
+  int64_t target;
+} pgr_edge_no_costs_t;
 
 typedef struct {
   int seq;

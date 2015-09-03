@@ -1,12 +1,6 @@
 #include <fstream>
 #include <boost/graph/adjacency_list.hpp>
-
-//The obj of this struct will hold the import file data
-typedef struct {
-  int64_t id;
-  int64_t source;
-  int64_t target;
-} pgr_edge_t;
+#include "../../common/src/pgr_types.h"
 
 //If dont wanna use "using namespace boost;" then take "https://github.com/boostorg/graph/blob/master/example/bfs.cpp" help
 
@@ -18,7 +12,7 @@ namespace boost {
 }
 
 //----------------------------------------------------------------------------------------------
-void import_from_file(const std::string &input_file_name, pgr_edge_t *edges, unsigned int *count){
+void import_from_file(const std::string &input_file_name, pgr_edge_no_costs_t *edges, unsigned int *count){
 	//Here assigning input_file_name argument to a char variable named file_name
 	const char* file_name = input_file_name.c_str();
 
@@ -56,14 +50,14 @@ void import_from_file(const std::string &input_file_name, pgr_edge_t *edges, uns
 //----------------------------------------------------------------------------------------------
 
 template <class G, class E>
-static void graph_add_edge(G &graph, const pgr_edge_t &edge){
+static void graph_add_edge(G &graph, const pgr_edge_no_costs_t &edge){
 	//Adding edge to out graph using passed in edge's source and target values
 	boost::add_edge(edge.source, edge.target, graph);
 }
 
 //----------------------------------------------------------------------------------------------
 template < typename UndirectedGraph >
-void undirected_graph_labelGraph_importfile(pgr_edge_t *data_edges, int count){
+void undirected_graph_labelGraph_importfile(pgr_edge_no_costs_t *data_edges, int count){
 	  const int V = 3;
 	  UndirectedGraph undigraph(V);
 	  //When using typedef then we are giving the whole definition of the data type a new name
@@ -176,7 +170,7 @@ void undirected_graph_labelGraph_importfile(pgr_edge_t *data_edges, int count){
 int main()
 {
   //Making an object of our struct. This will hold the import file data.
-  pgr_edge_t edges[100];
+  pgr_edge_no_costs_t edges[100];
   //Creating a count and initializing, later on we will update its value
   unsigned int count = 0;
 
